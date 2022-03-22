@@ -3,19 +3,23 @@ import shutil
 import sys
 import pandas as pd
 
-numOfDirs = len(sys.argv) - 2
-df2 = pd.DataFrame(columns=["Dir","Name"])
+numOfSources = len(sys.argv) - 2
+tabulka = pd.DataFrame(columns=["Dir","Name"])
+targetPath = sys.argv[len(sys.argv) - 1]
+counter = 0
 
-
-for i in range(1, numOfDirs):
-    path = sys.argv[i]
-    listDir = os.listdir(path)
-    df = pd.read_csv(os.path.join(path, "tabulka.txt"), header=['index','name'])
+for i in range(1, numOfSources + 1):
+    sourcePath = sys.argv[i]
+    listDir = os.listdir(sourcePath)
+    df = pd.read_csv(os.path.join(sourcePath, "tabulka.txt"), header=[0,1])
     
-    for j in range(len(listDir) - 1):
+    numofDirs = len(listDir)
+    for j in range(numofDirs - 1):
+        counter += 1
         nameOfFolder = listDir[j]
-        index = df.index[df['index'] == nameOfFolder]
-        name = df[index, 1]
-        shutil.copy(os.path.join(path, nameOfFolder), sys.argv[numOfDirs + 1])
-        os.rename(os.path.join(sys.argv[numOfDirs + 1], nameOfFolder), os.path.join(sys.argv[numOfDirs + 1], str(j + 1)))
-        
+        #rowIndex = df.index[df[0] == nameOfFolder]
+        #rowIndex = pd.Index[df[0] == nameOfFolder]
+        name = df[int(df[0] == nameOfFolder), 1]
+        shutil.copy(os.path.join(sourcePath, nameOfFolder), targetPath)
+        os.rename(os.path.join(targetPath, nameOfFolder), os.path.join(targetPath, str(counter)))  
+        tabulka = tabulka.append({'Dir' : str(j + 1), 'Name' : name})
