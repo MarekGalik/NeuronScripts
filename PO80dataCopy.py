@@ -1,10 +1,10 @@
-from ctypes import sizeof
 import os
 import shutil
 import sys
 
 target = sys.argv[2]
 src = sys.argv[1]
+
 #src = "C:\\Users\\admin\AppData\\Local\VirtualStore\\Program Files (x86)\\SpO2 Assistant\\Data"
 #target = "D:\FEI\meranie18.3\Snap" 
 
