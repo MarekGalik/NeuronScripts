@@ -6,7 +6,7 @@ def PlotPO80(sourcePath, targetPath, nameOfPerson):
 #df = pd.read_csv(sys.argv[1] + sys.argv[2])
     try:
         df = pd.read_csv(sourcePath)
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(15,5))
         lns1 = ax.plot(df.SPO2, label = "SPO2", color = "red")
         ax2 = ax.twinx()
         lns2 = ax2.plot(df.PULSE, label = "PULSE", color = "blue")
@@ -16,6 +16,7 @@ def PlotPO80(sourcePath, targetPath, nameOfPerson):
         labs = ["SPO2", "PULSE"]
         lns = lns1 + lns2
         ax.legend(lns, labs, loc=0)
+        plt.title(nameOfPerson + "-SPO2+Pulse",fontsize = 15, weight = "bold")
 
         savedFigures = os.listdir(targetPath)
         numberOfSameName = 0

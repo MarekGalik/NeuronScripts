@@ -20,6 +20,15 @@ for i in range(1, numOfSources + 1):
         index = listDir.index((str(j + 1)))
         nameOfFolder = listDir[index]
         name = str(df.loc[j, 1])
-        shutil.copytree(os.path.join(sourcePath, nameOfFolder), os.path.join(targetPath, str(counter)))  
+        copyPath = os.path.join(targetPath, str(counter))
+        shutil.copytree(os.path.join(sourcePath, nameOfFolder), copyPath)  
         f.write(str(counter) + " " + name + "\n")
-        
+        try:
+            renameList = os.listdir(os.path.join(copyPath, "PO80"))
+            for file in renameList:
+                if "_wave.csv" in file:
+                    os.rename(os.path.join(copyPath, "PO80", file), os.path.join(copyPath, "PO80", str(counter) + "_wave.csv"))
+                else:
+                    os.rename(os.path.join(copyPath, "PO80", file), os.path.join(copyPath, "PO80", str(counter) + ".csv"))
+        except: 
+            print("No PO80 data in " + str(counter) + ". folder")

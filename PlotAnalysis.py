@@ -21,9 +21,9 @@ def PlotAnalysis(sourcePath, nameOfPerson, targetPath):
     numberOfSameName = 0
     numberOfSameName2 = 0
     for figure in savedFigures:
-        if (nameOfPerson in figure and "-Coin.png" in figure):
+        if (nameOfPerson in figure and "-Coin.jpg" in figure):
             numberOfSameName += 1
-        if (nameOfPerson in figure and "-CoinZoom.png" in figure):
+        if (nameOfPerson in figure and "-CoinZoom.jpg" in figure):
             numberOfSameName2 += 1
  
     x = np.linspace(0, df.shape[0]/sampling, df.shape[0])
@@ -40,24 +40,24 @@ def PlotAnalysis(sourcePath, nameOfPerson, targetPath):
     ax.legend(lns, labs, loc=0)
 
     if (numberOfSameName>0):
-        plt.savefig(targetPath + "\\" + nameOfPerson + str(numberOfSameName+1)  + "-Coin.png")
+        plt.savefig(targetPath + "\\" + nameOfPerson + str(numberOfSameName+1)  + "-Coin.jpg")
     else:
-        plt.savefig(targetPath + "\\" + nameOfPerson + "-Coin.png")
+        plt.savefig(targetPath + "\\" + nameOfPerson + "-Coin.jpg")
 
-    xZoom = np.linspace(0, 5, 495)
+    xZoom = np.linspace(0, 3, 297)
     fig, axZoom = plt.subplots(figsize=(15,5))
-    lns1 = axZoom.plot(xZoom, df.red.iloc[0 : 495], color='green', linewidth=1.0, label="red")
+    lns1 = axZoom.plot(xZoom, df.red.iloc[0 : 297], color='green', linewidth=1.0, label="red")
     axZoom.set_ylabel("red", fontsize = 15, weight = "bold")
     ax2Zoom = axZoom.twinx()
     ax2Zoom.set_ylabel("ir", fontsize = 15, weight = "bold")
-    lns2 = ax2Zoom.plot(xZoom, df.ir.iloc[0 : 495], color='red', linewidth=1.0, label = "ir")
+    lns2 = ax2Zoom.plot(xZoom, df.ir.iloc[0 : 297], color='red', linewidth=1.0, label = "ir")
     axZoom.set_xlabel("sec")
     plt.title(str(nameOfPerson + " - zoom" + str(numberOfSameName+1)), fontsize = 15, weight = "bold")
     lns = lns1 + lns2
     labs = ["red", "ir"]
     axZoom.legend(lns, labs, loc=0)
     if (numberOfSameName2>0):
-        plt.savefig(targetPath + "\\" + nameOfPerson + str(numberOfSameName2+1)  + "-CoinZoom.png")
+        plt.savefig(targetPath + "\\" + nameOfPerson + str(numberOfSameName2+1)  + "-CoinZoom.jpg")
     else:
-        plt.savefig(targetPath + "\\" + nameOfPerson + "-CoinZoom.png")
+        plt.savefig(targetPath + "\\" + nameOfPerson + "-CoinZoom.jpg")
 
