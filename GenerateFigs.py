@@ -2,6 +2,7 @@ import sys
 import os
 import pandas as pd
 from PlotAnalysis import PlotAnalysis
+from PlotSpo2 import PlotSpo2
  
 sourcePath = sys.argv[1]
 targetPath = sys.argv[2]
@@ -16,6 +17,8 @@ for dir in listDir:
     pathToDir = os.path.join(sourcePath, str(dir))
     listDirInDir = os.listdir(pathToDir)
     for dirInDir in listDirInDir:
+        if ("PO80" in dirInDir):
+            PlotSpo2(os.path.join(sourcePath, dir, dirInDir, dir + ".csv"),targetPath, nameOfPerson)
         if("LEDs" in dirInDir):
             nameOfLedsFolder = dirInDir
     if (nameOfLedsFolder == ""):
