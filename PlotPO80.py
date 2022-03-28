@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sys
 import os
-def PlotPO80(sourcePath, targetPath, nameOfPerson):
+def PlotPO80(sourcePath, targetPath, nameOfPerson, index):
 #df = pd.read_csv(sys.argv[1] + sys.argv[2])
     try:
         df = pd.read_csv(sourcePath)
@@ -16,7 +16,7 @@ def PlotPO80(sourcePath, targetPath, nameOfPerson):
         labs = ["SPO2", "PULSE"]
         lns = lns1 + lns2
         ax.legend(lns, labs, loc=0)
-        plt.title(nameOfPerson + "-SPO2+Pulse",fontsize = 15, weight = "bold")
+        plt.title(index + ". meranie-" + nameOfPerson + "-SPO2+Pulse",fontsize = 15, weight = "bold")
 
         savedFigures = os.listdir(targetPath)
         numberOfSameName = 0
@@ -25,9 +25,9 @@ def PlotPO80(sourcePath, targetPath, nameOfPerson):
                 numberOfSameName += 1
 
         if numberOfSameName != 0:
-            plt.savefig(os.path.join(targetPath, nameOfPerson + str(numberOfSameName) + "-PO80.jpg"))
+            plt.savefig(targetPath + index + ". meranie-" + nameOfPerson + str(numberOfSameName) + "-PO80.jpg")
         else:
-            plt.savefig(os.path.join(targetPath, nameOfPerson + "-PO80.jpg"))
+            plt.savefig(targetPath + index + ". meranie-" + nameOfPerson + "-PO80.jpg")
     except:
         print("No PO80 data for " + nameOfPerson)
 

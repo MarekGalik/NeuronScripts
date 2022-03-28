@@ -19,7 +19,7 @@ def generateFigs(sourcePath, targetPath):
         listDirInDir = os.listdir(pathToDir)
         for dirInDir in listDirInDir:
             if ("PO80" in dirInDir):
-                PlotPO80(os.path.join(sourcePath, dir, dirInDir, dir + ".csv"),targetPath, nameOfPerson)
+                PlotPO80(os.path.join(sourcePath, dir, dirInDir, dir + ".csv"),targetPath, nameOfPerson, dir)
             if("LEDs" in dirInDir):
                 nameOfLedsFolder = dirInDir
         if (nameOfLedsFolder == ""):
@@ -30,4 +30,4 @@ def generateFigs(sourcePath, targetPath):
         files = os.listdir(pathToFiles)
         for file in files:
             if (".txt" in file and "-Log" not in file):
-                PlotAnalysis(os.path.join(pathToFiles,file),nameOfPerson,targetPath)
+                PlotAnalysis(os.path.join(pathToFiles,file),nameOfPerson,targetPath, dir)
