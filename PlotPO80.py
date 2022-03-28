@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import sys
 import os
-def PlotSpo2(sourcePath, targetPath, nameOfPerson):
+def PlotPO80(sourcePath, targetPath, nameOfPerson):
 #df = pd.read_csv(sys.argv[1] + sys.argv[2])
     try:
         df = pd.read_csv(sourcePath)
