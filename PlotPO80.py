@@ -16,7 +16,7 @@ def PlotPO80(sourcePath, targetPath, nameOfPerson, index):
         labs = ["SPO2", "PULSE"]
         lns = lns1 + lns2
         ax.legend(lns, labs, loc=0)
-        plt.title(index + ". meranie-" + nameOfPerson + "-SPO2+Pulse",fontsize = 15, weight = "bold")
+        plt.title(index + ". meranie-" + nameOfPerson + "-PO80",fontsize = 15, weight = "bold")
 
         savedFigures = os.listdir(targetPath)
         numberOfSameName = 0

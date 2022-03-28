@@ -20,7 +20,6 @@ def PlotCoinSPO2(sourcePath, targetPath, index, nameOfPerson, nameOfSnap):
         return
     
     fig, ax = plt.subplots(figsize=(15,5))
-    x = np.linspace(0, ((len(big_list[1])-1)/99), (len(big_list[1]))-1)
 
     for i in range(len(big_list)):
         if (str(big_list[i]).find(nameOfSnap) != -1):
@@ -30,6 +29,7 @@ def PlotCoinSPO2(sourcePath, targetPath, index, nameOfPerson, nameOfSnap):
             big_list[i+1] = list(map(float,big_list[i+1]))
             big_list[i+2] = list(map(float,big_list[i+2]))
             big_list[i+3] = list(map(float,big_list[i+3]))
+            x = np.linspace(0, (len(big_list[i+1])), len(big_list[i+1]))
             ax.plot(x,big_list[i+1], label = "SPO2", color = "red")
             ax.plot(x,big_list[i+2], label = "SPO2X", color = "green")
             ax.plot(x,big_list[i+3], label = "BPM", color = "blue")

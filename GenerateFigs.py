@@ -5,8 +5,8 @@ from PlotAnalysis import PlotAnalysis
 from PlotPO80 import PlotPO80
 from PlotCoinSPO2 import PlotCoinSPO2
  
-sourcePath = sys.argv[1]
-targetPath = sys.argv[2]
+#sourcePath = sys.argv[1]
+#targetPath = sys.argv[2]
 def generateFigs(sourcePath, targetPath):
     listDir = os.listdir(sourcePath)
     if ("tabulka.txt" in listDir):
