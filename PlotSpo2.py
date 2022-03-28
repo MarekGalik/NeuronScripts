@@ -6,12 +6,16 @@ def PlotSpo2(sourcePath, targetPath, nameOfPerson):
 #df = pd.read_csv(sys.argv[1] + sys.argv[2])
     try:
         df = pd.read_csv(sourcePath)
-        fig, f = plt.subplots()
-        f.plot(df.SPO2, label = "SPO2")
-        f.plot(df.PULSE, label = "PULSE")
-        f.set_ylabel('SPO2 + PULSE')
-        f.set_xlabel('sec')
-        f.legend(["Spo2", "Pulse"])
+        fig, ax = plt.subplots()
+        lns1 = ax.plot(df.SPO2, label = "SPO2", color = "red")
+        ax2 = ax.twinx()
+        lns2 = ax2.plot(df.PULSE, label = "PULSE", color = "blue")
+        ax.set_ylabel('SPO2')
+        ax2.set_ylabel('PULSE')
+        ax.set_xlabel('sec')
+        labs = ["SPO2", "PULSE"]
+        lns = lns1 + lns2
+        ax.legend(lns, labs, loc=0)
 
         savedFigures = os.listdir(targetPath)
         numberOfSameName = 0
