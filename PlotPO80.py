@@ -21,13 +21,13 @@ def PlotPO80(sourcePath, targetPath, nameOfPerson, index):
         savedFigures = os.listdir(targetPath)
         numberOfSameName = 0
         for figure in savedFigures:
-            if (nameOfPerson in figure):
+            if (nameOfPerson in figure and "-PO80.jpg" in figure):
                 numberOfSameName += 1
 
         if numberOfSameName != 0:
-            plt.savefig(targetPath + index + ". meranie-" + nameOfPerson + str(numberOfSameName) + "-PO80.jpg")
+            plt.savefig(targetPath + "\\" + index + ". meranie-" + nameOfPerson + str(numberOfSameName + 1) + "-PO80.jpg")
         else:
-            plt.savefig(targetPath + index + ". meranie-" + nameOfPerson + "-PO80.jpg")
+            plt.savefig(targetPath + "\\" + index + ". meranie-" + nameOfPerson + "-PO80.jpg")
     except:
         print("No PO80 data for " + nameOfPerson)
 

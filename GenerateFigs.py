@@ -3,6 +3,7 @@ import os
 import pandas as pd
 from PlotAnalysis import PlotAnalysis
 from PlotPO80 import PlotPO80
+from PlotCoinSPO2 import PlotCoinSPO2
  
 sourcePath = sys.argv[1]
 targetPath = sys.argv[2]
@@ -10,6 +11,8 @@ def generateFigs(sourcePath, targetPath):
     listDir = os.listdir(sourcePath)
     if ("tabulka.txt" in listDir):
         listDir.remove("tabulka.txt")
+    if ("result.txt" in listDir):
+        listDir.remove("result.txt")
     df = pd.read_csv(os.path.join(sourcePath, "tabulka.txt"), names=[0,1], sep=' ')
     nameOfLedsFolder = ""
  
@@ -31,3 +34,5 @@ def generateFigs(sourcePath, targetPath):
         for file in files:
             if (".txt" in file and "-Log" not in file):
                 PlotAnalysis(os.path.join(pathToFiles,file),nameOfPerson,targetPath, dir)
+                PlotCoinSPO2(sourcePath,targetPath,dir,nameOfPerson,file)
+
